@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      initContainers:
+        - name: wait-for-service
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for the service to be available..."
+              until wget -qO- http://my-service:80; do
+                echo "Service is not available yet. Retrying in 5 seconds..."
+                sleep 5
+              done
+              echo "Service is now available. Starting nginx."
+      containers:
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
