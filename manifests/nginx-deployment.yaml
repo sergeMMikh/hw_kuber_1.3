@@ -15,16 +15,7 @@ spec:
       initContainers:
         - name: wait-for-service
           image: busybox
-          command:
-            - sh
-            - -c
-            - |
-              echo "Waiting for the service to be available..."
-              until wget -qO- http://my-service:80; do
-                echo "Service is not available yet. Retrying in 5 seconds..."
-                sleep 5
-              done
-              echo "Service is now available. Starting nginx."
+          command: ['sh', '-c', "until nslookup myservice.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for myservice; sleep 2; done"]
       containers:
         - name: nginx
           image: nginx:1.14.2
