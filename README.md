@@ -6,14 +6,6 @@
 
 ------
 
-### Чеклист готовности к домашнему заданию
-
-1. Установленное k8s-решение (например, MicroK8S).
-2. Установленный локальный kubectl.
-3. Редактор YAML-файлов с подключённым git-репозиторием.
-
-------
-
 ### Инструменты и дополнительные материалы, которые пригодятся для выполнения задания
 
 1. [Описание](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) Deployment и примеры манифестов.
@@ -44,7 +36,7 @@
 <img src="images/Task_1_3.png" alt="Task_1_3.png" width="500" height="auto"></br>
 
 Использую манифест [multitool-pod.yaml](manifests/multitool-pod.yaml) для проверки досмтупа к приложению.</br>
-Проверил работоспособность nginx: `curl http://my-service:80` и multitool: `curl http://my-service:8080`.</br>
+Проверил работоспособность nginx: `curl http://my-service:80` и multitool: `curl http://my-service:8080`.</br></br>
 <img src="images/Task_1_4.png" alt="Task_1_4.png" width="500" height="auto"></br>
 
 
@@ -57,12 +49,12 @@
 3. Создать и запустить Service. Убедиться, что Init запустился.
 4. Продемонстрировать состояние пода до и после запуска сервиса.
 
-------
+**Решение**
 
-### Правила приема работы
-
-1. Домашняя работа оформляется в своем Git-репозитории в файле README.md. Выполненное домашнее задание пришлите ссылкой на .md-файл в вашем репозитории.
-2. Файл README.md должен содержать скриншоты вывода необходимых команд `kubectl` и скриншоты результатов.
-3. Репозиторий должен содержать файлы манифестов и ссылки на них в файле README.md.
+Создал манифест [nginx-deployment.yaml](manifests/nginx-deployment.yaml) с initContainers.</br>
+Создал простой файл с описанием сервиса [service_2.yaml](manifests/service_2.yaml).</br>
+До запуска сервиса под находился в состоянии `Init:0/1`.</br></br>
+<img src="images/Task_2_1_.png" alt="Task_2_1.png" width="500" height="auto"></br>
+ 
 
 ------
