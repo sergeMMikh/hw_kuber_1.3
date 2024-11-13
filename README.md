@@ -30,6 +30,24 @@
 4. Создать Service, который обеспечит доступ до реплик приложений из п.1.
 5. Создать отдельный Pod с приложением multitool и убедиться с помощью `curl`, что из пода есть доступ до приложений из п.1.
 
+**Решение**
+
+Создал манифест [nginx_and_multitool.yaml](manifests/nginx_and_multitool.yaml). Запустил.</br>
+В списке только один под.</br>
+<img src="images/Task_1_1.png" alt="Task_1_1.png" width="500" height="auto"></br>
+
+Использовал команду `kubectl scale deployment nginx-multitool-deployment --replicas=2` для увеличения количество реплик работающего приложения до 2.</br>
+В списке два пода.</br>
+<img src="images/Task_1_2.png" alt="Task_1_2.png" width="500" height="auto"></br>
+
+Создал манифест [service.yaml](manifests/service.yaml). Запустил.</br>
+<img src="images/Task_1_3.png" alt="Task_1_3.png" width="500" height="auto"></br>
+
+Использую манифест [multitool-pod.yaml](manifests/multitool-pod.yaml) для проверки досмтупа к приложению.</br>
+Проверил работоспособность nginx: `curl http://my-service:80` и multitool: `curl http://my-service:8080`.</br>
+<img src="images/Task_1_4.png" alt="Task_1_4.png" width="500" height="auto"></br>
+
+
 ------
 
 ### Задание 2. Создать Deployment и обеспечить старт основного контейнера при выполнении условий
